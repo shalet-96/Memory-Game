@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Classic Memory Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <link rel="stylesheet" href="game.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+
+<!-- Modal will come into display after game has been finished -->
+
+<div class="modal">
+    <div class="modalContent">
+        <p class="modalText"></p>
+        <button class="playAgain">Play Again!</button>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div ng-app="memoryGame" ng-controller="GameCtrl">
+        <div class="sideCards cardsContainer col-md-3" style="border: none !important; padding-top: 0px;">
+          <div style="margin-bottom: 25px;">
+            <button class="btn btn-lg btn-success" ng-click="startGame();">Start Game</button>
+            <button class="btn btn-lg btn-primary" ng-click="resetGame();">Reset Game</button>
+          </div>
+          <div class="row">
+            <div ng-repeat="cardSample in cardsArraySample">
+              <div class="card" ng-class="(cardSample.active == 0) ? 'sampleCard' :'selectedCard'">
+                <i ng-show="cardSample.active" class="{{cardSample.img}}" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div ng-show="activeGame">
+        <div class="cardsContainer col-md-6">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+            <div ng-repeat="card in cardsArray">
+              <div class="card" ng-class="(card.active == 0) ? 'defaultCard' :'selectedCard'" ng-click="selectCardAction(card);">
+                <i ng-show="card.active" class="{{card.img}}" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div></div>
+      </div>
+      </div>
+      <div ng-hide="activeGame">
+        <div class="col-md-6 alert alert-success finishedGameMessage">
+          <h1 class="text-center">Congratulations</h1>
+          <h3 class="text-center">You have won the game</h3>
+        </div>
+      </div>
+    </div>
+
+<script src="module.js"></script>
+<script src="appScript.js"></script>
+</body>
+
+</html>
